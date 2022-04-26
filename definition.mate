@@ -1,0 +1,22 @@
+### Standard Definition
+
+Headings are # This
+Bolds are =This=
+Italics are /This/
+Lists are This
+	- Like
+		- This
+	- Example
+Numbered lists are
+					4. Like
+		28.This
+	90)Example
+Hyperlinks are (This){SomePlace}
+Monospace is |This|
+Verbatim is %This%
+
+
+---  
+Code block
+	or something like that.
+--- 
