@@ -21,24 +21,39 @@ if [ $# -ne 1 ] || [ $1 == '-h' ] || [ $1 == '--help' ]; then
     exit
 fi
 
-while IFS= read -r line; do
-    echo "$line" |\
-        # Bold
-        sed -Er 's/=(.*)=/*\1*/' |\
-        # Italics
-        sed -Er 's/\/(.*)\//_\1_/' |\
-        # Headings
-        sed -Er 's/^#+\s*(.*)/# \1/' |\
-        # Sub headings
-	sed -Er 's/^\)+\s*(.*)/## \1/' |\
-        # Lists
-        sed -Er 's/^[\t|    ]+\- */\t\- /' |\
-        # Numbered lists
-        sed -Er 's/^[\t|    ]+([0-9]+)[\.|\)][ ]*/\t\1\. /' |\
-        # Monospace and verbatim
-        sed -Er 's/[\||%](.*)[\||%]/`\1`/' |\
-        # Links
-        sed -Er 's/\((.*)\)\{(.*)\}/\[\1\]\(\2\)/' |\
-        # Code blocks
-        sed -Er 's/^\-\-\- */```/'
+verbatim=false
+codeBlockReg="\s*^\-\-\- *"
+
+while IFS= read -r line; do                       # Read line by line
+    if [ $verbatim = false ]; then                # If you're not in a code block
+        if [[ "$line" =~ $codeBlockReg ]]; then   # If code block starts
+            echo '```'
+	    verbatim=true
+        else                                      # If you are not in a code block, apply regex
+            echo "$line" |\
+                # Bold
+                sed -Er 's/([^\\])=(.*?[^\\])=/\1*\2*/' |\
+                # Italics
+                sed -Er 's/([^\\])_(.*?[^\\])_/\1*\2*/' |\
+                # Headings
+                sed -Er 's/^#+\s*(.*)/# \1/' |\
+                # Sub headings
+                sed -Er 's/^\)+\s*(.*)/#### \1/' |\
+                # Lists
+                sed -Er 's/^[\t+| {4,}]+\- */\t\- /' |\
+                # Numbered lists
+                sed -Er 's/^[\t+| {4,}]+([0-9]+)[\.|\)][ ]*/\t\1\. /' |\
+                # Monospace and verbatim
+                sed -Er 's/([^\\])\|(.*?[^\\])\|/\1*\2*/' |\
+                # Links
+                sed -Er 's/\((.*)\)\{(.*)\}/\[\1\]\(\2\)/'
+        fi
+    else                                          # If you are in a code block
+	    if [[ "$line" =~ $codeBlockReg ]]; then   # If code block ends
+            echo '```'
+	        verbatim=false
+	    else                                      # Print the same you got
+            echo "$line"
+        fi
+    fi
 done < $1

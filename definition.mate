@@ -5,6 +5,7 @@ Headings are # This
 Subheadings are )) This
 
 Bolds are =This=
+and here's some \=escaped= stuff
 Italics are /This/
 Lists are This
 	- Like
@@ -18,6 +19,13 @@ Hyperlinks are (This){SomePlace}
 Monospace is |This|
 Verbatim is %This%
 
+------
+	code block again
+OwO
+---
+-----
+another one with some =stuff= in /it/
+-----------------------------
 
 ---  
 Code block

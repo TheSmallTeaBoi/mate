@@ -17,7 +17,8 @@ Sub headings:    ) Some text                  /^\)+\s*(.*)/
 Lists:           - Some text                  /^[\t|    ]+\- */
 Numbered lists:  1. Some text                 /^[\t|    ]+([0-9]+)[\.|\)][ ]*/
 Monospace:       |Some text|                  /\|(.*)\|/
-Verbatim:        %Some text%                  /%(.*)%/
 Links:           (Text){link}                 /\((.*)\)\{(.*)\}/
 Code blocks:     ---                          /^\-\-\- */
 ---
+
+	\- You can also \_escape_ \=stuff=
