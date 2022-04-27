@@ -10,7 +10,7 @@ Why not?
 The definition of the language goes as follows
 ---
 Name             Formatting                   Regex
-Bold:            *Some text*                  /=(.*)=/
+Bold:            =Some text=                  /=(.*)=/
 Italics:         /Some text/                  /\/(.*)\//
 Headings:        # Some text                  /^#+\s*(.*)/
 Sub headings:    ) Some text                  /^\)+\s*(.*)/
