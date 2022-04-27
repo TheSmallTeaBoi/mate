@@ -21,4 +21,4 @@ Links:           (Text){link}                 /\((.*)\)\{(.*)\}/
 Code blocks:     ---                          /^\-\-\- */
 ---
 
-	\- You can also \_escape_ \=stuff=
+You can also \_escape_ \=stuff=
