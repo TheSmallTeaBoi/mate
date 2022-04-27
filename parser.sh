@@ -29,6 +29,8 @@ while IFS= read -r line; do
         sed -Er 's/\/(.*)\//_\1_/' |\
         # Headings
         sed -Er 's/^#+\s*(.*)/# \1/' |\
+        # Sub headings
+	sed -Er 's/^\)+\s*(.*)/## \1/' |\
         # Lists
         sed -Er 's/^[\t|    ]+\- */\t\- /' |\
         # Numbered lists
