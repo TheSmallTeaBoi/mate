@@ -1,16 +1,19 @@
 #/usr/bin/env bash
 
 usage="
--h        : print this help
+-h, --help        : print this help
 
 Run this script by calling a file to get a markdown file out of a MATE file.
 Examples:
-Print markdown to the terminal
+Print markdown to the terminal:
+
 ---
 ./parser.sh readme.mate
 ---
 
-Save markdown file out of a MATE file
+
+Save markdown file out of a MATE file:
+
 ---
 ./parser.sh readme.mate >> README.md
 ---
